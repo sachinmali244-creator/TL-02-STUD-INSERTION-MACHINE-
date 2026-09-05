@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Machine Digital Passport | STUD INSERTION MACHINE (YFG TRUNK) </title>
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at top right, rgba(22,119,210,0.08), transparent 35%),
+        linear-gradient(135deg, #eef3f8, #f8fafc);
+    color: #172033;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #092b49, #145b89 55%, #1677d2);
+    color: white;
+    padding: 32px 20px 55px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(9,43,73,0.25);
+}
+
+/* Decorative circles */
+
+.header::before,
+.header::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+}
+
+.header::before {
+    width: 250px;
+    height: 250px;
+    top: -150px;
+    left: -80px;
+}
+
+.header::after {
+    width: 320px;
+    height: 320px;
+    bottom: -230px;
+    right: -80px;
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.company-name {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.header p {
+    margin: 9px 0 0;
+    font-size: 14px;
+    opacity: 0.88;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.container {
+    max-width: 760px;
+    margin: -30px auto 30px;
+    padding: 0 18px;
+    position: relative;
+    z-index: 5;
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card {
+    background: rgba(255,255,255,0.96);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 20px;
+
+    box-shadow:
+        0 10px 35px rgba(31,41,55,0.10),
+        0 2px 8px rgba(31,41,55,0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 16px 40px rgba(31,41,55,0.14),
+        0 4px 10px rgba(31,41,55,0.06);
+}
+
+
+/* =========================================================
+   MACHINE TITLE
+========================================================= */
+
+.machine-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.machine-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #12395c;
+}
+
+.machine-subtitle {
+    font-size: 12px;
+    color: #7b8794;
+    margin-top: 4px;
+}
+
+
+/* =========================================================
+   MACHINE STATUS
+========================================================= */
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+
+    background: #ecfdf3;
+    color: #138a4b;
+
+    padding: 8px 13px;
+    border-radius: 50px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+
+    box-shadow: 0 0 0 4px rgba(34,197,94,0.12);
+
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow: 0 0 0 0 rgba(34,197,94,0.35);
+    }
+
+    70% {
+        box-shadow: 0 0 0 7px rgba(34,197,94,0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(34,197,94,0);
+    }
+
+}
+
+
+/* =========================================================
+   MACHINE INFORMATION GRID
+========================================================= */
+
+.info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+}
+
+.info-box {
+    background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+
+    border: 1px solid #e6ebf1;
+
+    padding: 15px;
+    border-radius: 13px;
+
+    transition: all 0.2s ease;
+}
+
+.info-box:hover {
+    border-color: #b9d8ef;
+    transform: translateY(-2px);
+}
+
+.label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #7a8695;
+}
+
+.value {
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 6px;
+    color: #26374a;
+}
+
+
+/* =========================================================
+   PM SECTION
+========================================================= */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.section-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+
+    font-size: 21px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #12395c;
+}
+
+.section-subtitle {
+    font-size: 12px;
+    color: #7a8695;
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   PM CARDS
+========================================================= */
+
+.pm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.pm-box {
+    position: relative;
+
+    padding: 20px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    transition: transform 0.25s ease;
+}
+
+.pm-box:hover {
+    transform: translateY(-3px);
+}
+
+.pm-box::after {
+    content: "";
+    position: absolute;
+
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    right: -35px;
+    bottom: -40px;
+
+    opacity: 0.12;
+}
+
+.pm-due {
+    background: linear-gradient(135deg, #fff8e8, #fffdf5);
+    border: 1px solid #f8df9c;
+}
+
+.pm-due::after {
+    background: #f59e0b;
+}
+
+.pm-done {
+    background: linear-gradient(135deg, #ecfdf5, #f7fffb);
+    border: 1px solid #b8ebd0;
+}
+
+.pm-done::after {
+    background: #16a34a;
+}
+
+.pm-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: #7b8794;
+    margin-bottom: 8px;
+}
+
+.pm-date {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.pm-due .pm-date {
+    color: #b45309;
+}
+
+.pm-done .pm-date {
+    color: #15803d;
+}
+
+.pm-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+
+/* =========================================================
+   PM STATUS
+========================================================= */
+
+.pm-status {
+    margin-top: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 17px;
+
+    border-radius: 13px;
+
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+}
+
+.pm-status-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.check-circle {
+    width: 31px;
+    height: 31px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+    color: white;
+
+    font-weight: bold;
+}
+
+.pm-status-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #166534;
+}
+
+.pm-status-text {
+    font-size: 11px;
+    color: #4d7c5b;
+    margin-top: 2px;
+}
+
+
+/* =========================================================
+   MACHINE MANUAL
+========================================================= */
+
+.manual-section {
+    text-align: center;
+}
+
+.manual-icon {
+    font-size: 35px;
+    margin-bottom: 8px;
+}
+
+.manual-title {
+    font-size: 19px;
+    font-weight: 700;
+    color: #12395c;
+}
+
+.manual-description {
+    font-size: 12px;
+    color: #7a8695;
+    margin: 5px 0 17px;
+}
+
+.manual-button {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+
+    text-align: center;
+    text-decoration: none;
+
+    background: linear-gradient(135deg, #1677d2, #0d5fb3);
+
+    color: white;
+
+    padding: 16px;
+
+    border-radius: 13px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 18px rgba(22,119,210,0.25);
+
+    transition: all 0.25s ease;
+}
+
+.manual-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(22,119,210,0.32);
+}
+
+.manual-button:active {
+    transform: scale(0.98);
+}
+
+.manual-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -100%;
+
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.18),
+        transparent
+    );
+
+    transition: left 0.6s ease;
+}
+
+.manual-button:hover::before {
+    left: 130%;
+}
+
+.note {
+    font-size: 11px;
+    color: #8993a0;
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    text-align: center;
+    font-size: 11px;
+    color: #7c8794;
+    padding: 10px 20px 25px;
+}
+
+.footer-line {
+    width: 60px;
+    height: 3px;
+
+    margin: 0 auto 10px;
+
+    border-radius: 5px;
+
+    background: #1677d2;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 25px 15px 50px;
+    }
+
+    .company-name {
+        font-size: 14px;
+    }
+
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .container {
+        padding: 0 12px;
+        margin-top: -25px;
+    }
+
+    .card {
+        padding: 19px;
+        border-radius: 17px;
+    }
+
+    .machine-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .info,
+    .pm-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .machine-title {
+        font-size: 20px;
+    }
+
+    .pm-date {
+        font-size: 19px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .header h1 {
+        font-size: 21px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- =======================================================
+     HEADER
+======================================================== -->
+
+<header class="header">
+
+```
+<div class="header-content">
+
+    <div class="company-name">
+        MARELLI MOTHERSON AUTOMOTIVE LIGHTING INDIA PVT LTD
+    </div>
+
+    <h1>
+        Machine Digital Passport
+    </h1>
+
+    <p>
+        Digital Maintenance & Machine Information
+    </p>
+
+</div>
+```
+
+</header>
+
+<!-- =======================================================
+     MAIN CONTENT
+======================================================== -->
+
+<main class="container">
+
+```
+<!-- MACHINE INFORMATION -->
+
+<section class="card">
+
+    <div class="machine-heading">
+
+        <div>
+
+            <div class="machine-title">
+                Machine Information
+            </div>
+
+            <div class="machine-subtitle">
+                Equipment identification & basic details
+            </div>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            MACHINE ACTIVE
+
+        </div>
+
+    </div>
+
+
+    <div class="info">
+
+
+        <div class="info-box">
+
+            <div class="label">
+                Machine Name
+            </div>
+
+            <div class="value">
+                STUD INSERTION MACHINE (YFG TRUNK)
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                Machine ID
+            </div>
+
+            <div class="value">
+                STUD INSERTION MACHINE
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                Manufacturer
+            </div>
+
+            <div class="value">
+             PAVEWAY AUTOMATION
+            </div>
+
+        </div>
+
+
+        <div class="info-box">
+
+            <div class="label">
+                Department
+            </div>
+
+            <div class="value">
+                Maintenance
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ===================================================
+     PM STATUS
+==================================================== -->
+
+<section class="card">
+
+
+    <div class="section-header">
+
+        <div class="section-icon">
+            🔧
+        </div>
+
+        <div>
+
+            <div class="section-title">
+                Maintenance PM Status
+            </div>
+
+            <div class="section-subtitle">
+                Preventive maintenance tracking
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="pm-grid">
+
+
+        <!-- PM DUE -->
+
+        <div class="pm-box pm-due">
+
+            <div class="pm-icon">
+                📅
+            </div>
+
+            <div class="pm-label">
+                PM Due Date
+            </div>
+
+            <div class="pm-date">
+                15-Sep-2026
+            </div>
+
+        </div>
+
+
+        <!-- PM DONE -->
+
+        <div class="pm-box pm-done">
+
+            <div class="pm-icon">
+                ✓
+            </div>
+
+            <div class="pm-label">
+                PM Done Date
+            </div>
+
+            <div class="pm-date">
+                12-Sep-2026
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- PM COMPLETED STATUS -->
+
+    <div class="pm-status">
+
+        <div class="pm-status-left">
+
+            <div class="check-circle">
+                ✓
+            </div>
+
+            <div>
+
+                <div class="pm-status-title">
+                    PM Completed
+                </div>
+
+                <div class="pm-status-text">
+                    Preventive maintenance completed successfully
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+<!-- ===================================================
+     MACHINE MANUAL
+==================================================== -->
+
+<section class="card manual-section">
+
+    <div class="manual-icon">
+        📘
+    </div>
+
+    <div class="manual-title">
+        Machine Manual
+    </div>
+
+    <div class="manual-description">
+        Access the latest machine operating & maintenance manual
+    </div>
+
+
+    <!-- IMPORTANT:
+         Keep A.pdf in the SAME GitHub repository folder
+         as this index.html file.
+    -->
+
+    <a
+        class="manual-button"
+        href="./A.pdf"
+        target="_blank"
+        rel="noopener"
+    >
+
+        <span>📖</span>
+
+        <span>OPEN MACHINE MANUAL</span>
+
+        <span>↗</span>
+
+    </a>
+
+
+    <div class="note">
+        Document: A.pdf
+    </div>
+
+</section>
+```
+
+</main>
+
+<!-- =======================================================
+     FOOTER
+======================================================== -->
+
+<footer class="footer">
+
+```
+<div class="footer-line"></div>
+
+Machine Digital Passport
+&nbsp;|&nbsp;
+Maintenance Department
+```
+
+</footer>
+
+</body>
+</html>
