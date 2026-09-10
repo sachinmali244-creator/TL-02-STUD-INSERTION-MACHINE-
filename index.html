@@ -618,7 +618,280 @@ body {
     }
 
 }
+/* =========================================================
+   MACHINE PARAMETERS BUTTON
+========================================================= */
 
+.parameters-button {
+    border: none;
+    cursor: pointer;
+    margin-top: 12px;
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   PARAMETERS POPUP
+========================================================= */
+
+#parametersModal {
+
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    background: rgba(3, 15, 28, 0.90);
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 15px;
+
+    backdrop-filter: blur(6px);
+}
+
+
+/* Popup box */
+
+.parameters-box {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 700px;
+
+    max-height: 92vh;
+
+    background: #ffffff;
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.40);
+
+    animation: parameterPopup 0.35s ease;
+
+}
+
+
+@keyframes parameterPopup {
+
+    from {
+        opacity: 0;
+        transform: scale(0.85) translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+}
+
+
+/* Popup header */
+
+.parameters-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+
+.parameters-title {
+
+    font-size: 18px;
+
+    font-weight: 700;
+
+    color: #12395c;
+}
+
+
+.close-parameters {
+
+    width: 35px;
+
+    height: 35px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #eef3f8;
+
+    color: #12395c;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+}
+
+
+/* Image area */
+
+.parameter-image-container {
+
+    position: relative;
+
+    width: 100%;
+
+    background: #f1f5f9;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    text-align: center;
+}
+
+
+.parameter-image {
+
+    display: none;
+
+    width: 100%;
+
+    max-height: 65vh;
+
+    object-fit: contain;
+
+    cursor: zoom-in;
+}
+
+
+.parameter-image.active {
+
+    display: block;
+
+    animation: imageFade 0.35s ease;
+}
+
+
+@keyframes imageFade {
+
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* Navigation */
+
+.parameter-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+
+.parameter-nav-button {
+
+    flex: 1;
+
+    border: none;
+
+    padding: 11px;
+
+    border-radius: 10px;
+
+    background: #1677d2;
+
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.parameter-nav-button:active {
+
+    transform: scale(0.96);
+}
+
+
+.parameter-counter {
+
+    min-width: 80px;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    color: #667085;
+}
+
+
+.parameter-note {
+
+    text-align: center;
+
+    font-size: 10px;
+
+    color: #8993a0;
+
+    margin-top: 9px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .parameters-box {
+
+        padding: 12px;
+
+        border-radius: 16px;
+
+    }
+
+    .parameters-title {
+
+        font-size: 16px;
+
+    }
+
+    .parameter-image {
+
+        max-height: 60vh;
+
+    }
+
+   }
 </style>
 
 </head>
@@ -889,16 +1162,92 @@ body {
 
     </a>
 
+<!-- MACHINE PARAMETERS BUTTON -->
+<button class="manual-button parameters-button" onclick="openParameters()">
+    <span>⚙️ MACHINE PARAMETERS</span>
+</button>
 
-    <div class="note">
-        Document: A.pdf
-    </div>
 
 </section>
 ```
 
 </main>
+<!-- =========================================================
+     MACHINE PARAMETERS POPUP
+========================================================= -->
 
+<div id="parametersModal">
+
+    <div class="parameters-box">
+
+        <div class="parameters-header">
+
+            <div class="parameters-title">
+                ⚙️ Machine Parameters
+            </div>
+
+            <button
+                class="close-parameters"
+                onclick="closeParameters()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="parameter-image-container">
+
+            <!-- IMAGE 1 -->
+            <img
+                src="./1.jpg"
+                class="parameter-image active"
+                alt="Machine Parameter 1">
+
+            <!-- IMAGE 2 -->
+            <img
+                src="./2.jpg"
+                class="parameter-image"
+                alt="Machine Parameter 2">
+
+            <!-- IMAGE 3 -->
+            <img
+                src="./3.jpg"
+                class="parameter-image"
+                alt="Machine Parameter 3">
+
+        </div>
+
+
+        <div class="parameter-navigation">
+
+            <button
+                class="parameter-nav-button"
+                onclick="previousParameter()">
+                ◀ Previous
+            </button>
+
+            <div
+                class="parameter-counter"
+                id="parameterCounter">
+                1 / 3
+            </div>
+
+            <button
+                class="parameter-nav-button"
+                onclick="nextParameter()">
+                Next ▶
+            </button>
+
+        </div>
+
+
+        <div class="parameter-note">
+            Swipe/navigation buttons can be used to view all machine parameter images.
+        </div>
+
+    </div>
+
+</div>
 <!-- =======================================================
      FOOTER
 ======================================================== -->
@@ -914,6 +1263,126 @@ Maintenance Department
 ```
 
 </footer>
+<script>
 
+/* =========================================================
+   MACHINE PARAMETERS IMAGE SLIDER
+========================================================= */
+
+let parameterIndex = 0;
+
+const parameterImages =
+    document.querySelectorAll(".parameter-image");
+
+
+function openParameters() {
+
+    document.getElementById("parametersModal").style.display = "flex";
+
+    parameterIndex = 0;
+
+    showParameter(parameterIndex);
+}
+
+
+function closeParameters() {
+
+    document.getElementById("parametersModal").style.display = "none";
+}
+
+
+function showParameter(index) {
+
+    parameterImages.forEach(function(image) {
+
+        image.classList.remove("active");
+
+    });
+
+
+    parameterImages[index].classList.add("active");
+
+
+    document.getElementById("parameterCounter").textContent =
+        (index + 1) + " / " + parameterImages.length;
+}
+
+
+function nextParameter() {
+
+    parameterIndex++;
+
+    if (parameterIndex >= parameterImages.length) {
+
+        parameterIndex = 0;
+
+    }
+
+    showParameter(parameterIndex);
+}
+
+
+function previousParameter() {
+
+    parameterIndex--;
+
+    if (parameterIndex < 0) {
+
+        parameterIndex = parameterImages.length - 1;
+
+    }
+
+    showParameter(parameterIndex);
+}
+
+
+/* Close popup by clicking outside */
+
+document.getElementById("parametersModal").addEventListener(
+    "click",
+    function(event) {
+
+        if (event.target === this) {
+
+            closeParameters();
+
+        }
+
+    }
+);
+
+
+/* Keyboard navigation */
+
+document.addEventListener("keydown", function(event) {
+
+    const modal =
+        document.getElementById("parametersModal");
+
+    if (modal.style.display === "flex") {
+
+        if (event.key === "ArrowRight") {
+
+            nextParameter();
+
+        }
+
+        if (event.key === "ArrowLeft") {
+
+            previousParameter();
+
+        }
+
+        if (event.key === "Escape") {
+
+            closeParameters();
+
+        }
+
+    }
+
+});
+
+</script>
 </body>
 </html>
